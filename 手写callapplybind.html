@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>手写call/apply/bind</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 手写call
+  Function.prototype.myCall = function (context) {
+    console.log(this)
+    if (typeof this !== 'function') {
+      throw new TypeError('this is not function')
+    }
+    console.log(arguments)
+    context = context || window
+    context.fn = this
+    let arg = [...arguments].slice(1)
+    let result = context.fn(...arg)
+    delete context.fn
+    console.log(result)
+    // return result
+  }
+  let aa = function (c, d) {
+    console.log(this.a, this.b, c, d)
+  }
+  let a = {
+    a: 66,
+    b: 88
+  }
+  aa.myCall(a, 6,8)
+</script>
+</html>
