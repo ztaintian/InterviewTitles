@@ -20,10 +20,11 @@
     context = context || window
     context.fn = this
     let arg = [...arguments].slice(1)
+    console.log(...arg)
     let result = context.fn(...arg)
     delete context.fn
     console.log(result)
-    // return result
+    return result
   }
   let aa = function (c, d) {
     console.log(this.a, this.b, c, d)
@@ -32,6 +33,15 @@
     a: 66,
     b: 88
   }
-  aa.myCall(a, 6,8)
+  console.log('aa', aa.myCall(a, 6,8))
+  // 手写apply
+  // Function.prototype.myApply = function (context) {
+  //   if (typeof this !== 'function') {
+  //     throw new TypeError('this is not function')
+  //   }
+  //   context = context || window
+  //   context.fn = this
+
+  // }
 </script>
 </html>
