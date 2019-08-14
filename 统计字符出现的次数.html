@@ -12,17 +12,32 @@
 <script>
   var str = 'jjjkjkjkjkdsdsadasda';
   var arr = str.split('');
-  var statisticsNum = function (arr) {
+  // var statisticsNum = function (arr) {
+  //   var aa = arr.reduce((pre,cur) => {
+  //     if (!pre[cur]) {
+  //       pre[cur] = 1
+  //     } else {
+  //       pre[cur] = pre[cur] + 1
+  //     }
+  //     return pre
+  //   }, {})
+  //   return aa;
+  // }
+  // console.log(statisticsNum(arr))
+  // 去重
+  var distinct = function (arr) {
+    var tempArr = []
     var aa = arr.reduce((pre,cur) => {
       if (!pre[cur]) {
-        pre[cur] = 1
+        tempArr.push(cur);
+        pre[cur] = 1;
       } else {
-        pre[cur] = pre[cur] + 1
+        pre[cur] = pre[cur] + 1;
       }
       return pre
     }, {})
-    return aa;
+    return tempArr;
   }
-  console.log(statisticsNum(arr))
+  console.log(distinct(arr))
 </script>
 </html>

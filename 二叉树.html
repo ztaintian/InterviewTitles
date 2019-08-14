@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>二叉树</title>
+</head>
+<script>
+  // var twoBranin = function (key) {
+  //   var root = null
+  //   var node = {
+  //     left: null,
+  //     right: null,
+  //     key: key
+  //   }
+  // }
+  class braninTree {
+    constructor(tree = []) {
+      this.root = null; // 树根
+      this.node = (key) => {
+        // 生成一个新的子树
+        let _obj = Object.create(null, {});
+        _obj.left = null;
+        _obj.right = null;
+        _obj.key = key;
+        return _obj;
+      }
+      if (typeof tree === 'number') {
+        this.insertNumberTree(tree)
+      } else if (Array.isArray(tree)) {
+        this.insertArrayTree(tree)
+      } else {
+        console.error('请输入Number类型或者Array类型的参数')
+      }
+    }
+    insertNumberTree (key) {
+      var newNode = this.node(key)
+      var _insert = (node, newNode) => {
+        if (newNode.key < node.key) {
+          if (node.left === null) {
+            node.left = newNode
+          } else {
+            _insert(node.left, newNode)
+          }
+        } else {
+          if (node.right === null) {
+            node.right = newNode
+          } else {
+            _insert(node.right, newNode)
+          }
+        }
+      }
+      if (this.root === null) {
+        this.root = newNode
+      } else {
+        _insert(this.root, newNode);
+      }
+
+    }
+    insertArrayTree (tree) {
+      tree.map((item) => {
+        this.insertNumberTree(item)
+      })
+    }
+    showTree () {
+      return this.root
+    }
+  }
+  var tree = [5,4,9,0,2,3]
+  var aa = new braninTree(tree)
+  console.log(aa.showTree())
+</script>
+
+<body>
+
+</body>
+
+</html>
